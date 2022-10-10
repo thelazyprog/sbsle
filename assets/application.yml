@@ -1,0 +1,16 @@
+server:
+  port: ${SBSLE_APP_PORT:}
+  tomcat:
+    relaxed-query-chars: "[,]"
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${SBSLE_DB_HOST}:${SBSLE_DB_PORT}/${SBSLE_DB_NAME}?useUnicode=true&characterEncoding=UTF-8
+    username: ${SBSLE_DB_USER}
+    password: ${SBSLE_DB_PASS}
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false

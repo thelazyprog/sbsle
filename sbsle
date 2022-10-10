@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# NOTE: Lots of hardcode here, this is because I'm lazy. Hardcode and duplication are quite common for TLP's code. Yeah, not good.
+
+CURRENT=$(cd $(dirname $0);pwd)
+
+case "$1" in
+  "build" )
+    gradle $2 --parallel
+    ;;
+  "clean" )
+    gradle $2 --parallel
+    ;;
+  "gen.migration" )
+    $CURRENT/priv/bin/gen-migration.sh $2
+    ;;
+  "migrate" )
+    $CURRENT/priv/bin/migrate.sh
+    ;;
+  "rollback" )
+    echo "NOT SUPPORTED\n"
+    echo "PLS SUPRORT THIS COMMAND!!!!!!!!!!\n"
+    ;;
+  "run" )
+    gradle bootrun $3
+    ;;
+  * )
+    echo "sbsle: '$1' is not a sbsle command"
+    echo ""
+    ;;
+esac
